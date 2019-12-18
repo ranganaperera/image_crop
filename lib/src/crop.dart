@@ -572,7 +572,7 @@ class _CropPainter extends CustomPainter {
             _kCropOverlayInactiveOpacity * (1.0 - active));
     final boundaries = Rect.fromLTWH(
       rect.width * area.left,
-      9 * rect.height * area.top / 10,
+      8.5 * rect.height * area.top / 10,
       rect.width * area.width,
       rect.height * area.height,
     );
