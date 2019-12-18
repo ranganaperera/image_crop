@@ -93,7 +93,7 @@ class CropState extends State<Crop> with TickerProviderStateMixin, Drag {
         ? null
         : Rect.fromLTWH(
             _area.left * _view.width / _scale - _view.left,
-            _area.top * _view.height / _scale - _view.top,
+            _area.top * _view.height / _scale - _view.top - 0.048 / _scale,
             _area.width * _view.width / _scale,
             _area.height * _view.height / _scale,
           );
@@ -572,7 +572,7 @@ class _CropPainter extends CustomPainter {
             _kCropOverlayInactiveOpacity * (1.0 - active));
     final boundaries = Rect.fromLTWH(
       rect.width * area.left,
-      8.5 * rect.height * area.top / 10,
+      8.2 * rect.height * area.top / 10,
       rect.width * area.width,
       rect.height * area.height,
     );
