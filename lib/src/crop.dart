@@ -19,12 +19,16 @@ class Crop extends StatefulWidget {
   final double maximumScale;
   final bool alwaysShowGrid;
   final ImageErrorListener onImageError;
+  final double screenWidth;
+  final double screenHieght;
 
   const Crop({
     Key key,
     this.image,
     this.aspectRatio,
     this.maximumScale: 2.0,
+    this.screenWidth,
+    this.screenHieght,
     this.alwaysShowGrid: false,
     this.onImageError,
   })  : assert(image != null),
@@ -37,6 +41,8 @@ class Crop extends StatefulWidget {
     Key key,
     double scale = 1.0,
     this.aspectRatio,
+    this.screenWidth,
+    this.screenHieght,
     this.maximumScale: 2.0,
     this.alwaysShowGrid: false,
     this.onImageError,
@@ -52,6 +58,8 @@ class Crop extends StatefulWidget {
     String package,
     this.aspectRatio,
     this.maximumScale: 2.0,
+    this.screenWidth,
+    this.screenHieght,
     this.alwaysShowGrid: false,
     this.onImageError,
   })  : image = AssetImage(assetName, bundle: bundle, package: package),
@@ -244,7 +252,10 @@ class CropState extends State<Crop> with TickerProviderStateMixin, Drag {
       setState(() {
         _image = imageInfo.image;
         _scale = imageInfo.scale;
-        _ratio = 0.85;
+        _ratio = max(
+          _boundaries.width / widget.screenWidth,
+          _boundaries.height / widget.screenHieght,
+        );
 
         final viewWidth = _boundaries.width / (_image.width * _scale * _ratio);
         final viewHeight =
