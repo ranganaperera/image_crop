@@ -252,7 +252,7 @@ class CropState extends State<Crop> with TickerProviderStateMixin, Drag {
       setState(() {
         _image = imageInfo.image;
         _scale = imageInfo.scale;
-        _ratio = 0.87;
+        _ratio = 0.9;
         print("$_ratio");
 
         final viewWidth = _boundaries.width / (_image.width * _scale * _ratio);
@@ -261,7 +261,7 @@ class CropState extends State<Crop> with TickerProviderStateMixin, Drag {
           viewWidth: viewWidth,
           viewHeight: viewHeight,
           imageWidth: _image.width,
-          imageHeight: _image.height+30,
+          imageHeight: _image.height,
         );
         _view = Rect.fromLTWH(
           (viewWidth - 1.0) / 2,
